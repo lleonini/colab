@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>My Documents</title>
+	</head>
+	<body>
+		<h1>Welcome, {{ user.name }}!</h1>
+		<h2>Your Documents:</h2>
+		<ul>
+			{% for ud in user.documents %}
+			<li>{{ ud.document.name }} - <a href="/remove/{{ud.document.id}}">DEL</a>
+				<br>
+				<form method="post" action="/comment">
+					<input type="hidden" name="ud_id" value="{{ud.id}}">
+					<textarea id="comment" name="comment" rows="4" cols="50">{% if ud.comment %}{{ud.comment}}{% endif %}</textarea><br>
+					<input type="submit" value="Save">
+				</form>
+			</li>
+			{% endfor %}
+		</ul>
+		<h2>All Documents:</h2>
+		<ul>
+			{% for d in documents %}
+			<li>{{ d.name }} - {{ d.year }} (<a href="{{d.url}}">visit</a>) - <a href="/add/{{d.id}}">ADD</a></li>
+			{% endfor %}
+		</ul>
+		<form action="{{ url_for('logout') }}" method="post">
+			<input type="submit" value="Log Out">
+		</form>
+	</body>
+</html>
