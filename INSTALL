@@ -2,7 +2,10 @@
 python3 -m venv .venv
 source .venv/bin/activate
 
-pip install -r requirements.txt
 # pip install flask peewee
+pip install -r requirements.txt
+
+# si besoin créer/initialiser la DB
+python3 init_db.py
 
 ./run.sh
